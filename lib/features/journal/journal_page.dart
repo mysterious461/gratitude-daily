@@ -34,7 +34,19 @@ class JournalPage extends StatelessWidget {
                 _field('Something that made me smile'),
                 _field('Someone I am grateful for'),
                 _field('A small win today'),
-                ElevatedButton(onPressed: () {}, child: const Text('Save Entry')),
+                ElevatedButton(
+                  onPressed: () {},
+                  style: ElevatedButton.styleFrom(
+                    padding: const EdgeInsets.symmetric(vertical: 14),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                  ),
+                  child: const Text(
+                    'Save today’s gratitude',
+                    style: TextStyle(fontSize: 16),
+                  ),
+                ),
               ],
             ),
           );
@@ -45,12 +57,27 @@ class JournalPage extends StatelessWidget {
 
   Widget _field(String hint) {
     return Card(
-      margin: const EdgeInsets.only(bottom: 12),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(12),
+            ),
       child: Padding(
-        padding: const EdgeInsets.all(12),
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 18),
         child: TextField(
-          decoration: InputDecoration(hintText: hint, border: InputBorder.none),
-        ),
+                maxLines: null,
+                minLines: 2,
+                style: const TextStyle(
+                  fontSize: 16,
+                  height: 1.6,
+                ),
+                decoration: InputDecoration(
+                  hintText: hint,
+                  hintStyle: TextStyle(
+                    color: Colors.grey.shade600,
+                  ),
+                  border: InputBorder.none,
+                ),
+              ),
+
       ),
     );
   }
