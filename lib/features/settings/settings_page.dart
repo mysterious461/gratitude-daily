@@ -1,6 +1,7 @@
-import '../../core/app_settings.dart';
 import 'package:flutter/material.dart';
+import '../../core/app_settings.dart';
 import '../premium/premium_page.dart';
+import '../premium/premium_manager.dart';
 
 class SettingsPage extends StatelessWidget {
   const SettingsPage({super.key});
@@ -14,7 +15,9 @@ class SettingsPage extends StatelessWidget {
       body: ListView(
         padding: const EdgeInsets.all(16),
         children: [
-          _SectionHeader("Appearance"),
+          const _SectionHeader("Appearance"),
+
+          // THEME TOGGLE (REAL)
           ValueListenableBuilder<ThemeMode>(
             valueListenable: AppSettings.themeMode,
             builder: (context, mode, _) {
@@ -31,54 +34,57 @@ class SettingsPage extends StatelessWidget {
             },
           ),
 
+          const SizedBox(height: 24),
+          const _SectionHeader("Reminders"),
 
-          SizedBox(height: 16),
-          _SectionHeader("Reminders"),
-         ValueListenableBuilder<bool>(
-          valueListenable: AppSettings.dailyReminderEnabled,
-          builder: (context, enabled, _) {
-            return SwitchListTile(
-              title: const Text("Daily reminders"),
-              subtitle: const Text("Get gentle reminders to practice gratitude"),
-              value: enabled,
-              onChanged: (value) {
-                AppSettings.dailyReminderEnabled.value = value;
-                // Notifications will be implemented later
-              },
-              secondary: const Icon(Icons.notifications_outlined),
-            );
-          },
-        ),
-
-
-          SizedBox(height: 16),
-          _SectionHeader("Premium"),
-          _SettingTile(
-            icon: Icons.star,
-            title: "Gratitude Daily Premium",
-            subtitle: "Unlock all features and remove ads",
-            isPremium: true,
+          // REMINDER PLACEHOLDER (SAFE)
+          ValueListenableBuilder<bool>(
+            valueListenable: AppSettings.dailyReminderEnabled,
+            builder: (context, enabled, _) {
+              return SwitchListTile(
+                title: const Text("Daily reminders"),
+                subtitle:
+                    const Text("Get gentle reminders to practice gratitude"),
+                value: enabled,
+                onChanged: (value) {
+                  AppSettings.dailyReminderEnabled.value = value;
+                },
+                secondary: const Icon(Icons.notifications_outlined),
+              );
+            },
           ),
 
-          SizedBox(height: 16),
-          _SectionHeader("Data & Privacy"),
-          _SettingTile(
-            icon: Icons.download_outlined,
-            title: "Export journal",
-            subtitle: "Save your entries as text or PDF",
-          ),
-          _SettingTile(
-            icon: Icons.privacy_tip_outlined,
-            title: "Privacy policy",
-            subtitle: "Read how your data is handled",
+          const SizedBox(height: 24),
+          const _SectionHeader("Premium"),
+
+          ListTile(
+            leading: const Icon(Icons.star, color: Colors.amber),
+            title: const Text("Gratitude Daily Premium"),
+            subtitle: const Text("Unlock all features and remove ads"),
+            trailing: const Icon(Icons.chevron_right),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (_) => const PremiumPage()),
+              );
+            },
           ),
 
-          SizedBox(height: 16),
-          _SectionHeader("About"),
-          _SettingTile(
-            icon: Icons.info_outline,
-            title: "App version",
-            subtitle: "Gratitude Daily v1.0.0",
+          ListTile(
+            leading: const Icon(Icons.restore),
+            title: const Text("Restore purchases"),
+            onTap: () {
+              PremiumManager.restorePurchases();
+            },
+          ),
+
+          const SizedBox(height: 24),
+          const _SectionHeader("About"),
+
+          const ListTile(
+            leading: Icon(Icons.info_outline),
+            title: Text("App version"),
+            subtitle: Text("Gratitude Daily v1.0.0"),
           ),
         ],
       ),
@@ -86,7 +92,7 @@ class SettingsPage extends StatelessWidget {
   }
 }
 
-/* ---------- Helper Widgets ---------- */
+/* ---------- Helpers ---------- */
 
 class _SectionHeader extends StatelessWidget {
   final String title;
@@ -103,51 +109,6 @@ class _SectionHeader extends StatelessWidget {
           fontWeight: FontWeight.w600,
           color: Colors.grey,
         ),
-      ),
-    );
-  }
-}
-
-class _SettingTile extends StatelessWidget {
-  final IconData icon;
-  final String title;
-  final String subtitle;
-  final bool isPremium;
-
-  const _SettingTile({
-    required this.icon,
-    required this.title,
-    required this.subtitle,
-    this.isPremium = false,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Card(
-      elevation: 0,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(12),
-      ),
-      child: ListTile(
-        leading: Icon(
-          icon,
-          color: isPremium ? Colors.amber : null,
-        ),
-        title: Text(title),
-        subtitle: Text(subtitle),
-        trailing: const Icon(Icons.chevron_right),
-        Navigator.push(
-          context,
-          MaterialPageRoute(builder: (_) => const PremiumPage()),
-        );
-      ListTile(
-        leading: const Icon(Icons.restore),
-        title: const Text("Restore purchases"),
-        onTap: () {
-          PremiumManager.restorePurchases();
-        },
-      ),
-
       ),
     );
   }
