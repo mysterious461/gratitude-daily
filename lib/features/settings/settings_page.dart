@@ -1,3 +1,4 @@
+import '../../core/app_settings.dart';
 import 'package:flutter/material.dart';
 
 class SettingsPage extends StatelessWidget {
@@ -13,19 +14,41 @@ class SettingsPage extends StatelessWidget {
         padding: const EdgeInsets.all(16),
         children: const [
           _SectionHeader("Appearance"),
-          _SettingTile(
-            icon: Icons.palette_outlined,
-            title: "Theme",
-            subtitle: "Light / Dark mode",
+          ValueListenableBuilder<ThemeMode>(
+            valueListenable: AppSettings.themeMode,
+            builder: (context, mode, _) {
+              return SwitchListTile(
+                title: const Text("Dark mode"),
+                subtitle: const Text("Use dark theme"),
+                value: mode == ThemeMode.dark,
+                onChanged: (enabled) {
+                  AppSettings.themeMode.value =
+                      enabled ? ThemeMode.dark : ThemeMode.light;
+                },
+                secondary: const Icon(Icons.dark_mode),
+              );
+            },
           ),
+
 
           SizedBox(height: 16),
           _SectionHeader("Reminders"),
-          _SettingTile(
-            icon: Icons.notifications_outlined,
-            title: "Daily reminders",
-            subtitle: "Morning or evening notifications",
-          ),
+         ValueListenableBuilder<bool>(
+          valueListenable: AppSettings.dailyReminderEnabled,
+          builder: (context, enabled, _) {
+            return SwitchListTile(
+              title: const Text("Daily reminders"),
+              subtitle: const Text("Get gentle reminders to practice gratitude"),
+              value: enabled,
+              onChanged: (value) {
+                AppSettings.dailyReminderEnabled.value = value;
+                // Notifications will be implemented later
+              },
+              secondary: const Icon(Icons.notifications_outlined),
+            );
+          },
+        ),
+
 
           SizedBox(height: 16),
           _SectionHeader("Premium"),
