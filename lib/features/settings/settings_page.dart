@@ -13,7 +13,7 @@ class SettingsPage extends StatelessWidget {
       ),
       body: ListView(
         padding: const EdgeInsets.all(16),
-        children: const [
+        children: [
           _SectionHeader("Appearance"),
           ValueListenableBuilder<ThemeMode>(
             valueListenable: AppSettings.themeMode,
