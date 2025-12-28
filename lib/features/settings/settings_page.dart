@@ -140,6 +140,13 @@ class _SettingTile extends StatelessWidget {
           context,
           MaterialPageRoute(builder: (_) => const PremiumPage()),
         );
+      ListTile(
+        leading: const Icon(Icons.restore),
+        title: const Text("Restore purchases"),
+        onTap: () {
+          PremiumManager.restorePurchases();
+        },
+      ),
 
       ),
     );
