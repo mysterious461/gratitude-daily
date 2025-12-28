@@ -2,7 +2,12 @@ import 'package:flutter/material.dart';
 import '../../widgets/quote_card.dart';
 
 class HomePage extends StatelessWidget {
-  const HomePage({super.key});
+  final VoidCallback onAddGratitude;
+
+  const HomePage({
+    super.key,
+    required this.onAddGratitude,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -39,9 +44,7 @@ class HomePage extends StatelessWidget {
 
             // ADD ENTRY BUTTON
             ElevatedButton(
-              onPressed: () {
-            // Later we can auto-switch to Journal tab
-              },
+              onPressed: onAddGratitude,
               style: ElevatedButton.styleFrom(
                 padding: const EdgeInsets.symmetric(vertical: 14),
                 shape: RoundedRectangleBorder(
@@ -53,7 +56,6 @@ class HomePage extends StatelessWidget {
                 style: TextStyle(fontSize: 16),
               ),
             ),
-
 
             const SizedBox(height: 24),
 
