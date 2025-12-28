@@ -1,5 +1,6 @@
 import '../../core/app_settings.dart';
 import 'package:flutter/material.dart';
+import '../premium/premium_page.dart';
 
 class SettingsPage extends StatelessWidget {
   const SettingsPage({super.key});
@@ -135,9 +136,11 @@ class _SettingTile extends StatelessWidget {
         title: Text(title),
         subtitle: Text(subtitle),
         trailing: const Icon(Icons.chevron_right),
-        onTap: () {
-          // Wire actions later (theme, reminders, premium, etc.)
-        },
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (_) => const PremiumPage()),
+        );
+
       ),
     );
   }
