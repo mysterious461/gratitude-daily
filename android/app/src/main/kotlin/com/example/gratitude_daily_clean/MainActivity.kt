@@ -1,4 +1,4 @@
-package com.example.gratitude_daily_clean
+package com.ainexus.gratitude_daily
 
 import io.flutter.embedding.android.FlutterActivity
 
