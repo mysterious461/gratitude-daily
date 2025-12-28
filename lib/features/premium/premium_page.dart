@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'premium_manager.dart';
 
 class PremiumPage extends StatelessWidget {
   const PremiumPage({super.key});
@@ -111,7 +112,7 @@ class PremiumPage extends StatelessWidget {
           // CTA BUTTON
           ElevatedButton(
             onPressed: () {
-              // IAP flow will be connected later
+              PremiumManager.buyPremium();
             },
             style: ElevatedButton.styleFrom(
               padding: const EdgeInsets.symmetric(vertical: 16),
@@ -124,6 +125,7 @@ class PremiumPage extends StatelessWidget {
               style: TextStyle(fontSize: 16),
             ),
           ),
+
 
           const SizedBox(height: 12),
 
