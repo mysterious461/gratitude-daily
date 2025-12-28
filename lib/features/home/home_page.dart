@@ -19,7 +19,9 @@ class HomePage extends StatelessWidget {
       body: ListView(
         padding: const EdgeInsets.all(16),
         children: [
-          const QuoteCard(),
+          const QuoteCard(
+            quote: "Gratitude turns what we have into enough.",
+          ),
           const SizedBox(height: 24),
 
           Text(
