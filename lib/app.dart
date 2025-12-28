@@ -15,11 +15,24 @@ class GratitudeApp extends StatefulWidget {
 class _GratitudeAppState extends State<GratitudeApp> {
   int _currentIndex = 0;
 
-  final List<Widget> _pages = const [
-    HomePage(),
-    JournalPage(),
-    CalendarPage(),
-  ];
+  late final List<Widget> _pages;
+
+  @override
+  void initState() {
+    super.initState();
+  
+    _pages = [
+      HomePage(
+        onAddGratitude: () {
+          setState(() {
+            _currentIndex = 1; // Journal tab
+          });
+        },
+      ),
+      const JournalPage(),
+      const CalendarPage(streak: 5),
+    ];
+  }
 
   @override
   Widget build(BuildContext context) {
