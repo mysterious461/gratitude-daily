@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
+import 'features/premium/premium_manager.dart';
 
-void main() {
-  runApp(const MyApp());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await PremiumManager.init();
+  runApp(const GratitudeApp());
 }
+
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
