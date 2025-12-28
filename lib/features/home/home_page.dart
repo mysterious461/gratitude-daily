@@ -71,6 +71,53 @@ class HomePage extends StatelessWidget {
               child: const Text(
                 "🔥 Current streak: 0 days\nConsistency matters more than perfection.",
               ),
+
+            const SizedBox(height: 24),
+
+            Container(
+              padding: const EdgeInsets.all(16),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(16),
+                border: Border.all(
+                  color: Theme.of(context).colorScheme.primary.withOpacity(0.3),
+                ),
+                color: Theme.of(context).colorScheme.primary.withOpacity(0.05),
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    children: const [
+                      Icon(Icons.star, color: Colors.amber),
+                      SizedBox(width: 8),
+                      Text(
+                        "Go Premium",
+                        style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 8),
+                  const Text(
+                    "Unlock extra themes, PIN lock, inspirational quotes, and enjoy an ad-free experience.",
+                    style: TextStyle(height: 1.4),
+                  ),
+                  const SizedBox(height: 12),
+                  Align(
+                    alignment: Alignment.centerRight,
+                    child: TextButton(
+                      onPressed: () {
+                        // Navigate to Premium screen later
+                      },
+                      child: const Text("Learn more"),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+
             ),
           ],
         ),
