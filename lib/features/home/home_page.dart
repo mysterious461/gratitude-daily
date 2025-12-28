@@ -11,15 +11,14 @@ class HomePage extends StatelessWidget {
         title: const Text("Gratitude Daily"),
         centerTitle: true,
       ),
-      body: Padding(
+      body: ListView(
         padding: const EdgeInsets.all(16),
-        child: Column(
+        children: [
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             // DAILY QUOTE
             const QuoteCard(),
-
-            const SizedBox(height: 24),
+            const SizedBox(height: 28),
 
             // TODAY SUMMARY
             Text(
@@ -29,8 +28,11 @@ class HomePage extends StatelessWidget {
             const SizedBox(height: 8),
 
             Text(
-              "Take a moment to reflect on what you're grateful for.",
-              style: Theme.of(context).textTheme.bodyMedium,
+              "Take a quiet moment to reflect on what you're grateful for today.",
+              style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                   height: 1.5,
+                   fontWeight: FontWeight.w600,
+                 ),
             ),
 
             const SizedBox(height: 24),
@@ -38,16 +40,28 @@ class HomePage extends StatelessWidget {
             // ADD ENTRY BUTTON
             ElevatedButton(
               onPressed: () {
-                // Navigation handled by tab switch
+            // Later we can auto-switch to Journal tab
               },
-              child: const Text("Add today’s gratitude"),
+              style: ElevatedButton.styleFrom(
+                padding: const EdgeInsets.symmetric(vertical: 14),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(12),
+                ),
+              ),
+              child: const Text(
+                "Add today’s gratitude",
+                style: TextStyle(fontSize: 16),
+              ),
             ),
+
 
             const SizedBox(height: 24),
 
             // STREAK PREVIEW
-            Container(
-              padding: const EdgeInsets.all(16),
+            const Text(
+              "🔥 Current streak: 0 days\n\nConsistency matters more than perfection.",
+              style: TextStyle(height: 1.4),
+            ),
               decoration: BoxDecoration(
                 color: Theme.of(context).colorScheme.primary.withOpacity(0.08),
                 borderRadius: BorderRadius.circular(12),
