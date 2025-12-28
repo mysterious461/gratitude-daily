@@ -1,3 +1,4 @@
+import 'features/settings/settings_page.dart';
 import 'package:flutter/material.dart';
 
 import 'core/theme/app_theme.dart';
@@ -25,12 +26,13 @@ class _GratitudeAppState extends State<GratitudeApp> {
       HomePage(
         onAddGratitude: () {
           setState(() {
-            _currentIndex = 1; // Journal tab
+            _currentIndex = 1;
           });
         },
       ),
       const JournalPage(),
       const CalendarPage(streak: 5),
+      const SettingsPage(),
     ];
   }
 
@@ -61,9 +63,14 @@ class _GratitudeAppState extends State<GratitudeApp> {
             ),
             BottomNavigationBarItem(
               icon: Icon(Icons.calendar_today),
-              label: 'Calendar',
+              label: 'Streak',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.settings),
+              label: 'Settings',
             ),
           ],
+
         ),
       ),
     );
