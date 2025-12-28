@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../widgets/quote_card.dart';
+import '../premium/premium_page.dart';
 
 class HomePage extends StatelessWidget {
   final VoidCallback onAddGratitude;
@@ -108,9 +109,11 @@ class HomePage extends StatelessWidget {
                   Align(
                     alignment: Alignment.centerRight,
                     child: TextButton(
-                      onPressed: () {
-                        // Navigate to Premium screen later
-                      },
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (_) => const PremiumPage()),
+                      );
+
                       child: const Text("Learn more"),
                     ),
                   ),
