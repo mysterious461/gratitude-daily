@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'app.dart';
 import 'features/premium/premium_manager.dart';
 
 void main() async {
