@@ -1,10 +1,12 @@
-import 'features/settings/settings_page.dart';
 import 'package:flutter/material.dart';
-import 'core/app_settings.dart';
+
 import 'core/theme/app_theme.dart';
+import 'core/app_settings.dart';
+
 import 'features/home/home_page.dart';
 import 'features/journal/journal_page.dart';
 import 'features/calendar/calendar_page.dart';
+import 'features/settings/settings_page.dart';
 
 class GratitudeApp extends StatefulWidget {
   const GratitudeApp({super.key});
@@ -15,13 +17,11 @@ class GratitudeApp extends StatefulWidget {
 
 class _GratitudeAppState extends State<GratitudeApp> {
   int _currentIndex = 0;
-
   late final List<Widget> _pages;
 
   @override
   void initState() {
     super.initState();
-  
     _pages = [
       HomePage(
         onAddGratitude: () {
@@ -79,3 +79,5 @@ class _GratitudeAppState extends State<GratitudeApp> {
         );
       },
     );
+  }
+}
